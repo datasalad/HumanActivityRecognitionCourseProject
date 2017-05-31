@@ -1,11 +1,11 @@
 ---
-
 ### Getting and Cleaning Data Course Project
 
 One of the most exciting areas in all of data science right now is wearable computing. Companies like Fitbit, Nike, and Jawbone Up are racing to develop the most advanced algorithms to attract new users.
 
 The purpose of this project is to demonstrate an ability to collect, work with, and clean a data set. The goal is to prepare tidy data that can be used for later analysis. 
 
+---
 ### Human Activity Recognition Using Smartphones Data Set 
 
 Human Activity Recognition database built from the recordings of 30 subjects performing activities of daily living (ADL) while carrying a waist-mounted smartphone with embedded inertial sensors.
@@ -23,6 +23,7 @@ http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartpho
 Data for analysis is downloaded from the below URL
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 
+---
 ### run_analysis.R
 
 This is the main script to perform the cleaning and tidying of the dataset as described in the excercise. It does the following:
@@ -36,10 +37,11 @@ This is the main script to perform the cleaning and tidying of the dataset as de
 
 The script saves the data to a text file called `tidydataset.txt`.
 
+---
 ### Running the script
 
 To run the script, you need to download the script and load it into R from your working directory. 
-You should call `runAnalysis` function, that performs all the steps listed above.
+You should call `runAnalysis` function, which performs all the steps listed above.
 
 ```source('run_analysis.R')```
 
