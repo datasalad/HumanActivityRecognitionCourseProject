@@ -26,16 +26,16 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 ---
 ### run_analysis.R
 
-This is the main script to perform the cleaning and tidying of the dataset as described in the excercise. It does the following:
+This is the main script to perform the cleaning and tidying of the data set as described in the excercise. It does the following:
 
 0. Downloads the data for analysis and unzips the archive.
 1. Merges the training set `trainingtData` and the test set `testData` to create one data set `mergedDataset`.
-2. Extracts only the measurements on the mean and standard deviation for each measurement.
+2. Extracts only the measurements on the mean `mean()` and standard deviation `std()` for each measurement.
 3. Uses descriptive activity names to name the activities in the data set.
 4. Appropriately labels the data set with descriptive variable names from.
 5. From the data set in step 4, creates a second, independent tidy data set `tidyDataset` with the average of each variable for each activity and each subject.
 
-The script saves the data to a text file called `tidydataset.txt`.
+The script saves the tidy data set of `180` observations and `81` columns (`2` columns for `subject` and `activity` and `79` columns for measurement variables) to a text file called `tidydataset.txt`.
 
 ---
 ### Running the script
@@ -46,3 +46,23 @@ You should call `runAnalysis` function, which performs all the steps listed abov
 ```source('run_analysis.R')```
 
 ```runAnalysis()  ```
+
+---
+### Files included in the repository
+
+This repository includes the following files:
+
+```runAnalysis.R```
+R script which performs the cleaning and tidying of the data set.
+
+```CodeBook.md  ```
+The Code Book.
+
+```README.md ```
+ReadMe file.
+
+```tidydataset.txt```
+Tidy data set for submission.
+
+```/rawdata/UCI HAR Dataset```
+Human Activity Recognition Using Smartphones Data Set.
