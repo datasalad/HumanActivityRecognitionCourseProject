@@ -87,6 +87,7 @@ runAnalysis <- function() {
     descriptiveNames <- gsub("\\(\\)", "", descriptiveNames)
     descriptiveNames <- tolower(descriptiveNames)
     
+    print("measurementsDataset labels:")
     print(descriptiveNames)
     
     ## set column names
@@ -109,34 +110,46 @@ runAnalysis <- function() {
     ## --- and each subject
     ## ----------------------------------------------------------------------------
     
-    ## Calculate the average of each variable for each activity and each subject
-    allSubjects <- sort(unique(subjects$subject))
-    allActivities <- as.vector(activities$V2)
-    allVariables <- descriptiveNames
+    # ## Calculate the average of each variable for each activity and each subject
+    # allSubjects <- sort(unique(subjects$subject))
+    # allActivities <- as.vector(activities$V2)
+    # allVariables <- descriptiveNames
+    # 
+    # tidyDataset <- data.frame()
+    # 
+    # for (subj in allSubjects){
+    #     for (act in allActivities) {
+    #         ## crate a new observation, which consists of (subject, activity, mean of variable)
+    #         observation <- c(subj)
+    #         observation <- append(observation, act)
+    #         data <- dataset[(dataset$subject == subj & dataset$activity == act) , ]
+    #         
+    #         for (variable in allVariables){
+    #             ## calculate average for each feature
+    #             varMean <- mean(data[ , variable])
+    #             
+    #             ## add mean to the observation 
+    #             observation <- append(observation, varMean)
+    #         }
+    #         ## append the observation to the dataset
+    #         tidyDataset <- rbind(tidyDataset, as.data.frame(t(observation)))
+    #     }
+    # }
+    # 
+    # ## apply names
+    # names(tidyDataset) <- c("subject", "activity", as.vector(descriptiveNames))
+    # str(tidyDataset)
     
-    tidyDataset <- data.frame()
     
-    for (subj in allSubjects){
-        for (act in allActivities) {
-            ## crate a new observation, which consists of (subject, activity, mean of variable)
-            observation <- c(subj)
-            observation <- append(observation, act)
-            data <- dataset[(dataset$subject == subj & dataset$activity == act) , ]
-            
-            for (variable in allVariables){
-                ## calculate average for each feature
-                varMean <- mean(data[ , variable])
-                
-                ## add mean to the observation 
-                observation <- append(observation, varMean)
-            }
-            ## append the observation to the dataset
-            tidyDataset <- rbind(tidyDataset, as.data.frame(t(observation)))
-        }
-    }
+    ## UPD
+    ## updated to more elegant, dplyr version of step 5
     
-    ## apply names
-    names(tidyDataset) <- c("subject", "activity", as.vector(descriptiveNames))
+    library(dplyr)
+    
+    tidyDataset <- tbl_df(dataset) %>%
+        group_by(subject, activity) %>%
+        summarize_each(funs(mean))
+    
     str(tidyDataset)
     
     ## write the dataset for the submission into the file
